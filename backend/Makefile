@@ -3,4 +3,4 @@ migrate:
 	python manage.py migrate
 
 run:
-	uvicorn app.asgi:aplication --reload
+	uvicorn app.asgi:application --reload
