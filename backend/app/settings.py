@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'auth',
+    'accounts',
     'drf_spectacular'
 ]
 
@@ -121,18 +121,21 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-AUTH_MODEL_USER = 'auth..Usuario'
+AUTH_MODEL_USER = 'accounts.Usuario'
 
-from time import timedelta
+from datetime import timedelta
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         ),
+    "DEFAULT_SCHEMA_CLASS":"drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
 }
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': (timedelta(minutes=15)),
     'REFRESH_TOKEN_LIFETIME': (timedelta(days=7)),
-    'AUTH_HEADER_TYPE': ('Bearer', )
+    'AUTH_HEADER_TYPES': ('Bearer', )
 }

@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from rest_framework import ModelViewSet, status
+from rest_framework.viewsets import ModelViewSet
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from auth.models import Usuario
+from .models import Usuario
 from .serializer import UsuarioSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
+
+#from 
 # Create your views here.
 
 class UsuarioViewSet(ModelViewSet):
