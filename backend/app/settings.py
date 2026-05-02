@@ -121,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-AUTH_MODEL_USER = 'accounts.Usuario'
+AUTH_USER_MODEL = 'accounts.Usuario'
 
 from datetime import timedelta
 
