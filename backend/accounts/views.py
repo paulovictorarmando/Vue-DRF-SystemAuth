@@ -25,6 +25,18 @@ class UsuarioViewSet(ModelViewSet):
             return Response({'detail': 'Unauthorized'}, status=status.HTTP_401_UNAUTHORIZED)
         return super().create(request)
     
+    def retrieve(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        if request.user.is_Staff or request.user.id == int(pk):
+            return super().retrieve(request, *args, **kwargs)
+        return Response({'detaul': "UNAUTHORIZED"}, status=status.HTTP_401_UNAUTHORIZED)
+    
+    def update(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        if request.user.is_Staff or request.user.id == int(pk):
+            return super().update(request, *args, *kwargs)
+        return Response({'detaul': "UNAUTHORIZED"}, status=status.HTTP_401_UNAUTHORIZED)
+    
     @action(detail=False, methods=['post'], permission_classes=[AllowAny])
     def register(self, request):
         serializer = self.get_serializer(data=request.data)
